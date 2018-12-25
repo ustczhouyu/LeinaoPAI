@@ -141,10 +141,14 @@ RUN	pip2 install scikit-image \
 		datetime \
 		scipy \
 		matplotlib \
+		https://download.pytorch.org/whl/cu80/torch-1.0.0-cp35-cp35m-linux_x86_64.whl \
+		torchvision \
+		python-Levenshtein \
 		opencv-python
 WORKDIR	/opt
 
 RUN	git clone https://github.com/NVIDIA/nccl.git && cd nccl && make -j install && cd .. && rm -rf nccl
+RUN     git clone https://github.com/SeanNaren/warp-ctc.git && cd warp-ctc && mkdir build && cd build && cmake .. && make && cd .. && cd pytorch_binding && python setup.py install  
 
 WORKDIR /
 
